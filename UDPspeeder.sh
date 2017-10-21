@@ -70,6 +70,8 @@ install() {
 }
 unistall() {
 	if [[ -f /usr/local/bin/speederv2 ]]; then
+		UDPspeeder_pid=$(ps ux | pgrep "speederv2")
+		[ $UDPspeeder_pid ] && kill -9 $UDPspeeder_pid
 		rm -rf /usr/local/bin/speederv2
 		echo -e " \n$green卸载完成...$none\n" && exit 1
 	else
