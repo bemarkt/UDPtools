@@ -39,7 +39,7 @@ install() {
 	ver=$(curl -s https://api.github.com/repos/wangyu-/UDPspeeder/releases/latest | grep 'tag_name' | cut -d\" -f4)
 	UDPspeeder_download_link="https://github.com/wangyu-/UDPspeeder/releases/download/$ver/speeder_binaries.tar.gz"
 	mkdir -p /tmp/UDPspeeder
-	if ! wget --no-check-certificate -O "/tmp/UDPspeeder.tar.gz" $UDPspeeder_download_link; then
+	if ! wget --no-check-certificate --no-cache -O "/tmp/UDPspeeder.tar.gz" $UDPspeeder_download_link; then
 		echo -e "$red 下载 UDPspeeder 失败！$none" && exit 1
 	fi
 	tar zxf /tmp/UDPspeeder.tar.gz -C /tmp/UDPspeeder
