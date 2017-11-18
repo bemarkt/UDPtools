@@ -58,7 +58,7 @@ install() {
 
 		大胸弟....你自己解决咯...
 
-		脚本问题反馈: https://github.com/233abc/UDPspeeder/issues
+		脚本问题反馈: https://github.com/233boy/UDPspeeder/issues
 		
 		UDPspeeder 帮助或反馈: https://github.com/wangyu-/UDPspeeder
 		"
