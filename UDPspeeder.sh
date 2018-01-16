@@ -43,9 +43,9 @@ install() {
 		echo -e "$red 下载 UDPspeeder 失败！$none" && exit 1
 	fi
 	tar zxf /tmp/UDPspeeder.tar.gz -C /tmp/UDPspeeder
-	cp -f /tmp/UDPspeeder/$speeder_ver /usr/local/bin/speederv2
-	chmod +x /usr/local/bin/speederv2
-	if [[ -f /usr/local/bin/speederv2 ]]; then
+	cp -f /tmp/UDPspeeder/$speeder_ver /usr/bin/speederv2
+	chmod +x /usr/bin/speederv2
+	if [[ -f /usr/bin/speederv2 ]]; then
 		clear
 		echo -e " 
 		$green UDPspeeder 安装完成...$none
@@ -69,10 +69,10 @@ install() {
 	rm -rf /tmp/UDPspeeder.tar.gz
 }
 unistall() {
-	if [[ -f /usr/local/bin/speederv2 ]]; then
+	if [[ -f /usr/bin/speederv2 ]]; then
 		UDPspeeder_pid=$(pgrep "speederv2")
 		[ $UDPspeeder_pid ] && kill -9 $UDPspeeder_pid
-		rm -rf /usr/local/bin/speederv2
+		rm -rf /usr/bin/speederv2
 		echo -e " \n$green卸载完成...$none\n" && exit 1
 	else
 		echo -e " \n$red大胸弟...你貌似毛有安装 UDPspeeder ....卸载个鸡鸡哦...$none\n" && exit 1
