@@ -68,7 +68,7 @@ install() {
 	rm -rf /tmp/UDPspeeder
 	rm -rf /tmp/UDPspeeder.tar.gz
 }
-unistall() {
+uninstall() {
 	if [[ -f /usr/bin/speederv2 ]]; then
 		UDPspeeder_pid=$(pgrep "speederv2")
 		[ $UDPspeeder_pid ] && kill -9 $UDPspeeder_pid
@@ -100,7 +100,7 @@ while :; do
 		break
 		;;
 	2)
-		unistall
+		uninstall
 		break
 		;;
 	*)
