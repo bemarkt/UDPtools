@@ -74,7 +74,7 @@ install() {
 	rm -rf /tmp/UDPspeeder.tar.gz
 }
 uninstall() {
-	if [ -f /usr/bin/udpspeeder || -f /usr/bin/udp2raw]; then
+	if [[ -f /usr/bin/udpspeeder ]] && [[ -f /usr/bin/udp2raw ]]; then
 		UDPspeeder_pid=$(pgrep "udpspeeder")
 		UDP2raw_pid=$(pgrep "udp2raw")
 		[ $UDPspeeder_pid ] && kill -9 $UDPspeeder_pid
@@ -103,7 +103,7 @@ while :; do
 	read -p "请选择[1-2]:" choose
 	case $choose in
 	1)
-		if [ -f /usr/bin/udpspeeder || -f /usr/bin/udp2raw]; then
+		if [[ -f /usr/bin/udpspeeder ]] && [[ -f /usr/bin/udp2raw ]]; then
 			echo -e "$red UDPspeeder&&UDP2raw已经存在！"
 		else
 			install
