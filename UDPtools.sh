@@ -31,7 +31,7 @@ else
 fi
 
 install() {
-	$cmd install wget jq screen -y
+	$cmd install jq screen -y
 	UDPspeeder_download_link=$(curl -s https://api.github.com/repos/wangyu-/UDPspeeder/releases | jq -r '.[0].assets[0].browser_download_url')
 	UDP2raw_download_link=$(curl -s https://api.github.com/repos/wangyu-/udp2raw-tunnel/releases | jq -r '.[0].assets[0].browser_download_url')
 	mkdir -p /tmp/UDPspeeder
