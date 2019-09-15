@@ -46,7 +46,9 @@ elif [[ ${sys_bit} == "x86_64" ]]; then
 else
 	echo -e " \n${red}不支持你的系统....${none}\n" && exit 1
 fi
-
+Install_BBR() {
+	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+}
 Install() {
 	Check_sys
 	${command} install jq screen -y
@@ -133,6 +135,7 @@ while :; do
 	echo
 	echo " 2. 卸载"
 	echo
+	echo " 3. 安装BBR"
 	read -p "请选择[1-2]:" choose
 	case $choose in
 	1)
@@ -147,6 +150,8 @@ while :; do
 		Uninstall
 		break
 		;;
+	3)
+		Install_BBR
 	*)
 		Error
 		;;
