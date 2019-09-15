@@ -27,7 +27,7 @@ if [[ $sys_bit == "i386" || $sys_bit == "i686" ]]; then
 elif [[ $sys_bit == "x86_64" ]]; then
 	system_ver="_amd64"
 else
-	echo -e " \n$red不支持你的系统....$none\n" && exit 1
+	echo -e " \n$red不支持你的系统....${none}\n" && exit 1
 fi
 
 install() {
@@ -37,10 +37,10 @@ install() {
 	mkdir -p /tmp/UDPspeeder
 	mkdir -p /tmp/UDP2raw
 	if ! wget --no-check-certificate --no-cache -O "/tmp/UDPspeeder.tar.gz" $UDPspeeder_download_link; then
-		echo -e "$red 下载 UDPspeeder 失败！$none" && exit 1
+		echo -e "${red} 下载 UDPspeeder 失败！${none}" && exit 1
 	fi
 	if ! wget --no-check-certificate --no-cache -O "/tmp/UDP2raw.tar.gz" $UDP2raw_download_link; then
-		echo -e "$red 下载 UDP2raw 失败！$none" && exit 1
+		echo -e "${red} 下载 UDP2raw 失败！${none}" && exit 1
 	fi
 	tar zxf /tmp/UDPspeeder.tar.gz -C /tmp/UDPspeeder
 	tar zxf /tmp/UDP2raw.tar.gz -C /tmp/UDP2raw
@@ -48,9 +48,11 @@ install() {
 	cp -f /tmp/UDP2raw/udp2raw$system_ver /usr/bin/udp2raw
 	chmod +x /usr/bin/udpspeeder
 	chmod +x /usr/bin/udp2raw
+	echo -n "请输入要加速的本地UDP端口:"
+	read port
 	screen -dmS udpspeeder
 	screen -dmS udp2raw
-	screen -x -S udpspeeder -p 0 -X stuff "udpspeeder -s -l127.0.0.1:7776  -r127.0.0.1:1025 -k "password" --mode 0 -f2:4 --timeout 0"
+	screen -x -S udpspeeder -p 0 -X stuff "udpspeeder -s -l127.0.0.1:7776  -r127.0.0.1:$port -k "password" --mode 0 -f2:4 --timeout 0"
 	screen -x -S udpspeeder -p 0 -X stuff $'\n'
 	screen -x -S udp2raw -p 0 -X stuff "udp2raw -s -l0.0.0.0:7775 -r127.0.0.1:7776 -k "password" --raw-mode faketcp -a"
 	screen -x -S udp2raw -p 0 -X stuff $'\n'
@@ -58,11 +60,11 @@ install() {
 	if [[ -f /usr/bin/udpspeeder ]]; then
 		clear
 		echo -e " 
-		$green UDPspeeder&UDP2raw安装完成$none
+		${green} UDPspeeder&UDP2raw安装完成${none}
 
 		${yellow}UDPspeeder ${none}使用端口：${red}本地：${green}7776${red}远程：${green}1025
 		${yellow}UDP2raw ${none}使用端口：${red}本地：${green}7775${red}远程：${green}7776
-		
+
 		输入${yellow} screen -r udpspeeder ${none}查看udpspeeder
 		输入${yellow} screen -r udp2raw ${none}查看udp2raw
 
@@ -72,7 +74,7 @@ install() {
 		UDP2raw 帮助或反馈: https://github.com/wangyu-/udp2raw-tunnel
 		"
 	else
-		echo -e " \n$red安装失败...$none\n"
+		echo -e " \n$red安装失败...${none}\n"
 	fi
 	rm -rf /tmp/UDPspeeder
 	rm -rf /tmp/UDPspeeder.tar.gz
@@ -85,14 +87,14 @@ uninstall() {
 		[ $UDP2raw_pid ] && kill -9 $UDP2raw_pid
 		rm -rf /usr/bin/udpspeeder
 		rm -rf /usr/bin/udp2raw
-		echo -e " \n$green卸载完成...$none\n" && exit 1
+		echo -e " \n$green卸载完成...${none}\n" && exit 1
 	else
-		echo -e " \n$red大胸弟...你貌似没有安装 UDPspeeder&&UDP2raw ....卸载个鸡鸡哦...$none\n" && exit 1
+		echo -e " \n$red你貌似没有安装 UDPspeeder&&UDP2raw ....无法卸载...${none}\n" && exit 1
 	fi
 }
 error() {
 
-	echo -e "\n$red 输入错误！$none\n"
+	echo -e "\n${red} 输入错误！${none}\n"
 
 }
 while :; do
@@ -108,7 +110,7 @@ while :; do
 	case $choose in
 	1)
 		if [[ -f /usr/bin/udpspeeder ]] && [[ -f /usr/bin/udp2raw ]]; then
-			echo -e "$red UDPspeeder&&UDP2raw已经存在！"
+			echo -e "${red} UDPspeeder&&UDP2raw已经存在！"
 		else
 			install
 		fi
