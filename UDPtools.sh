@@ -5,7 +5,7 @@ green='\e[92m'
 yellow='\e[93m'
 none='\e[0m'
 
-[[ $(id -u) != 0 ]] && echo -e " \n哎呀……请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1
+[[ $(id -u) != 0 ]] && echo -e " \n……请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1
 
 cmd="apt-get"
 
@@ -19,7 +19,7 @@ if [[ -f /usr/bin/apt-get ]] || [[ -f /usr/bin/yum ]]; then
 	fi
 
 else
-	echo -e " \n${red}该脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}\n" && exit 1
+	echo -e " \n${red}该脚本${none} 不支持你的系统。 \n" && exit 1
 fi
 
 if [[ $sys_bit == "i386" || $sys_bit == "i686" ]]; then
@@ -58,10 +58,10 @@ install() {
 	if [[ -f /usr/bin/udpspeeder ]]; then
 		clear
 		echo -e " 
-		$green UDPspeeder&UDP2raw安装完成...$none
+		$green UDPspeeder&UDP2raw安装完成$none
 
-		输入$yellow udpspeeder $none使用udpspeeder....
-		输入$yellow udp2raw $none使用udpspeeder
+		输入${yellow} screen -r udpspeeder ${none}查看udpspeeder
+		输入${yellow} screen -r udp2raw ${none}查看udp2raw
 
 		脚本问题反馈: https://github.com/ithg/UDPspeeder/issues
 		
