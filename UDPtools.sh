@@ -52,7 +52,7 @@ install() {
 	screen -dmS udp2raw
 	screen -x -S udpspeeder -p 0 -X stuff "udpspeeder -s -l127.0.0.1:7776  -r127.0.0.1:1025 -k "password" --mode 0 -f2:4 --timeout 0"
 	screen -x -S udpspeeder -p 0 -X stuff $'\n'
-	screen -x -S udp2raw -p 0 -X stuff "udp2raw -s -l0.0.0.1:7775 -r127.0.0.1:7776 -k "password" --raw-mode faketcp -a"
+	screen -x -S udp2raw -p 0 -X stuff "udp2raw -s -l0.0.0.0:7775 -r127.0.0.1:7776 -k "password" --raw-mode faketcp -a"
 	screen -x -S udp2raw -p 0 -X stuff $'\n'
 
 	if [[ -f /usr/bin/udpspeeder ]]; then
@@ -60,6 +60,9 @@ install() {
 		echo -e " 
 		$green UDPspeeder&UDP2raw安装完成$none
 
+		${yellow}UDPspeeder ${none}使用端口：${red}本地：${green}7776${red}远程：${green}1025
+		${yellow}UDP2raw ${none}使用端口：${red}本地：${green}7775${red}远程：${green}7776
+		
 		输入${yellow} screen -r udpspeeder ${none}查看udpspeeder
 		输入${yellow} screen -r udp2raw ${none}查看udp2raw
 
