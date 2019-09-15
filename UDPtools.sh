@@ -76,7 +76,7 @@ Install() {
 	screen -x -S udpspeeder -p 0 -X stuff $'\n'
 	screen -x -S udp2raw -p 0 -X stuff "udp2raw -s -l0.0.0.0:7775 -r127.0.0.1:7776 -k "password" --raw-mode faketcp -a"
 	screen -x -S udp2raw -p 0 -X stuff $'\n'
-
+	Get_Server_IP
 	if [[ -f /usr/bin/udpspeeder ]]; then
 		clear
 		echo -e " 
