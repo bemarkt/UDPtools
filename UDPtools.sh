@@ -16,7 +16,7 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 none='\033[0m'
 
-[[ $(id -u) != 0 ]] && { echo -e " \n……请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1 }
+[[ $(id -u) != 0 ]] &&  echo -e " \n……请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1 
 
 sys_bit=$(uname -m)
 Check_sys() {
@@ -136,7 +136,7 @@ while :; do
 	echo " 2. 卸载"
 	echo
 	echo " 3. 安装BBR"
-	read -p "请选择[1-2]:" choose
+	read -p "请选择[1-3]:" choose
 	case $choose in
 	1)
 		if [[ -f /usr/bin/udpspeeder ]] && [[ -f /usr/bin/udp2raw ]]; then
