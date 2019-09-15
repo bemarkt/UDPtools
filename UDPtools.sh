@@ -152,6 +152,7 @@ while :; do
 		;;
 	3)
 		Install_BBR
+		;;
 	*)
 		Error
 		;;
