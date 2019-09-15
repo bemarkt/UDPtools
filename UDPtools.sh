@@ -35,10 +35,11 @@ install() {
 	UDPspeeder_download_link=$(curl -s https://api.github.com/repos/wangyu-/UDPspeeder/releases | jq -r '.[0].assets[0].browser_download_url')
 	UDP2raw_download_link=$(curl -s https://api.github.com/repos/wangyu-/udp2raw-tunnel/releases | jq -r '.[0].assets[0].browser_download_url')
 	mkdir -p /tmp/UDPspeeder
+	mkdir -p /tmp/UDP2raw
 	if ! wget --no-check-certificate --no-cache -O "/tmp/UDPspeeder.tar.gz" $UDPspeeder_download_link; then
 		echo -e "$red 下载 UDPspeeder 失败！$none" && exit 1
 	fi
-	if ! wget --no-check-certificate --no-cache -O "/tmp/UDPspeeder.tar.gz" $UDP2raw_download_link; then
+	if ! wget --no-check-certificate --no-cache -O "/tmp/UDP2raw.tar.gz" $UDP2raw_download_link; then
 		echo -e "$red 下载 UDP2raw 失败！$none" && exit 1
 	fi
 	tar zxf /tmp/UDPspeeder.tar.gz -C /tmp/UDPspeeder
@@ -49,7 +50,7 @@ install() {
 	chmod +x /usr/bin/udp2raw
 	screen -dmS udpspeeder
 	screen -dmS udp2raw
-	screen -x -S udpspeeder -p 0 -X stuff "speederv2 -s -l127.0.0.1:7776  -r127.0.0.1:1025 -k "password" --mode 0 -f2:4 --timeout 0"
+	screen -x -S udpspeeder -p 0 -X stuff "udpspeeder -s -l127.0.0.1:7776  -r127.0.0.1:1025 -k "password" --mode 0 -f2:4 --timeout 0"
 	screen -x -S udpspeeder -p 0 -X stuff $'\n'
 	screen -x -S udp2raw -p 0 -X stuff "udp2raw -s -l0.0.0.1:7775 -r127.0.0.1:7776 -k "password" --raw-mode faketcp -a"
 	screen -x -S udp2raw -p 0 -X stuff $'\n'
