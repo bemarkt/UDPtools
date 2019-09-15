@@ -62,11 +62,11 @@ install() {
 		echo -e " 
 		${green} UDPspeeder&UDP2raw安装完成${none}
 
-		${yellow}UDPspeeder ${none}使用端口：${red}本地：${green}7776${red}远程：${green}1025
-		${yellow}UDP2raw ${none}使用端口：${red}本地：${green}7775${red}远程：${green}7776
+		${yellow}UDPspeeder${none}	使用端口：${red}本地：${green}7776${red}	远程：${green}1025
+		${yellow}UDP2raw${none}		使用端口：${red}本地：${green}7775${red}	远程：${green}7776
 
-		输入${yellow} screen -r udpspeeder ${none}查看udpspeeder
-		输入${yellow} screen -r udp2raw ${none}查看udp2raw
+		${none}输入${yellow} screen -r udpspeeder ${none}查看udpspeeder
+		${none}输入${yellow} screen -r udp2raw ${none}查看udp2raw
 
 		脚本问题反馈: https://github.com/ithg/UDPspeeder/issues
 		
