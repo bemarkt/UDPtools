@@ -81,10 +81,8 @@ install() {
 }
 uninstall() {
 	if [[ -f /usr/bin/udpspeeder ]] && [[ -f /usr/bin/udp2raw ]]; then
-		UDPspeeder_pid=$(pgrep "udpspeeder")
-		UDP2raw_pid=$(pgrep "udp2raw")
-		[ $UDPspeeder_pid ] && kill -9 $UDPspeeder_pid
-		[ $UDP2raw_pid ] && kill -9 $UDP2raw_pid
+		screen -X -S udpspeeder quit
+		screen -X -S udp2raw quit
 		rm -rf /usr/bin/udpspeeder
 		rm -rf /usr/bin/udp2raw
 		echo -e " \n$green卸载完成...${none}\n" && exit 1
